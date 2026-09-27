@@ -1,0 +1,26 @@
+<div fxLayout="row " fxLayout.lt-md="column" >
+
+    <div fxFlex="60" fxLayoutAlign="center center" fxFlex.xs="100" >
+        <app-slider></app-slider>
+        
+    </div>
+
+    <div fxFlex="40" fxLayout="column" >
+
+        <div fxFlex="25" fxLayoutAlign="center center" >
+            
+            <span [@animarNombre]="estadoDelNombre" (click)="cambiarEstadoDelNombre()" id="nombre" [ngStyle.xs]="{'font-size.em': 2.2}">Yasmin Guzman</span>
+        </div>
+
+        <div fxFlex="25" fxLayoutAlign="center center" >
+            <img src="../../../../assets/inicio/one.png" alt="One" class="img-fluid">
+        </div>
+
+        <div fxFlex="50" fxLayoutAlign="center center">
+
+            <app-formulario-inicio  fxFlex.xs="70"fxFlex.sm="50" fxLayout="column" ></app-formulario-inicio>
+        </div>
+    </div>
+</div>
+
+<app-footer fxLayoutAlign="center end" ></app-footer>

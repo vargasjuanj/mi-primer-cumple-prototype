@@ -1,0 +1,86 @@
+<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="40px" class="separar-colaboracion colaborar">
+  <div id="titulo" [ngStyle.xs]="{'fontSize.em' : 1.6}">
+    Su colaboración es opcional
+  </div>
+  <div>
+
+    <button [ngStyle]="{'fontSize.em' : 1.5}" class="complemento-elevacion colaborar4 "
+      [class.mat-elevation-z8]="elevarBoton" id="boton-colaborar" mat-raised-button color="primary"
+      (click)="aparecerFormulario()">
+      <mat-icon id="icono-colaborar" class="mr-1">{{icono}}</mat-icon>
+      <span #textoBotonColaborar>{{textoBoton}}</span>
+    </button>
+  </div>
+
+  <div *ngIf="verFormulario" class="mt-5 select-categoria" fxLayout="column wrap" fxLayoutAlign="none center">
+
+    <mat-form-field  [ngStyle]="{'fontSize.em' : 1.5}" class="select-categoria" appearance="fill">
+      <mat-label>
+
+        <mat-icon>menu_book</mat-icon> Categoria
+      </mat-label>
+      <mat-select required [(ngModel)]="nombreDeCategoria"
+        (selectionChange)="guardarCategoriaYVaciarTiposGeneralesYVariables()">
+        <mat-option *ngFor="let nombreDeCategoria of servicioDeDatos.categorias" [value]="nombreDeCategoria">
+          {{nombreDeCategoria}}
+        </mat-option>
+        
+      </mat-select>
+    </mat-form-field>
+
+    <app-formulario-bebida *ngIf="nombreDeCategoria === 'Bebida'" class="mb-4 select-categoria"
+      [ngStyle]="{'fontSize.em' : 1.5}" [categoria]="categoria" [nombreDeCategoria]="nombreDeCategoria"
+      [articulo]="articulo" [marcaAuxiliar]="marcaAuxiliar" [archivoAuxiliar]="archivoAuxiliar"
+      [tipoDeBebida]="tipoDeBebida" [tipoDeAlcoholica]="tipoDeAlcoholica" [marcaONombreAuxiliar]="marcaONombreAuxiliar"
+      (desaparecerFormularioDelPadre)="desaparecerFormulario()" (enviarArticuloAlPadre)="guardarArticulo($event)">
+    </app-formulario-bebida>
+
+    <app-formulario-articulo *ngIf="noEsBebida()" class="mb-4 select-categoria" [ngStyle]="{'fontSize.em' : 1.5}"
+      [categoria]="categoria" [nombreDeCategoria]="nombreDeCategoria" [marcaAuxiliar]="marcaAuxiliar"
+      [articulo]="articulo" [nombreAuxiliar]="nombreAuxiliar" [archivoAuxiliar]="archivoAuxiliar"
+      (desaparecerFormularioDelPadre)="desaparecerFormulario()" (enviarArticuloAlPadre)="guardarArticulo($event)">
+    </app-formulario-articulo>
+
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <button mat-button [disabled]="bloquearBotonDeMensaje" [ngStyle]="{'background':'#FF6081','fontSize.em' : 1.2}" (click)="abrirCajaDeMensaje()">
+      <mat-icon>email</mat-icon>
+      {{textoBotonMensaje}}
+    </button>
+    </div>
+    <div  fxLayoutAlign="center">
+      <mat-card *ngIf="mostrarContenidoDelMensaje()">
+        <div class="mensaje"  >
+          {{invitado.mensaje}}
+        </div>
+      </mat-card>
+    </div>
+    
+    <mat-card *ngIf="bloquearBotonDeMensaje"class="example-card ">
+        <mat-card-content > 
+          <mat-form-field  class="mensaje" >
+            <mat-label>
+              <mat-icon></mat-icon> Mensaje:
+            </mat-label>
+          
+              <textarea matInput class="text-area"
+                 placeholder="Escribir mi mensaje"[(ngModel)]="invitado.mensaje"  >
+              </textarea>
+           
+          </mat-form-field>
+                    
+        </mat-card-content>
+        <mat-card-actions fxLayoutAlign="space-around">
+          <button mat-button [ngStyle]="{'color':'#FF6081'}" (click)="guardarMensaje()"><b>GUARDAR</b></button>
+          <button mat-button (click)="cancelarGuardar()">CANCELAR</button>
+        </mat-card-actions>
+    </mat-card>
+    
+</div>
+<br><br>
+<div fxLayoutAlign="center">
+  
+</div>
+
+<app-listado-articulos *ngIf="articulos.length>0" [articulos]="articulos"></app-listado-articulos>

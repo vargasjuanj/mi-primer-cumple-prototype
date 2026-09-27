@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { 
+    height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.green-dark{
+
+    background: #4CAF50;
+    color :   white;
+  }
+  .green-light{
+    background: #66bb6a;;
+    color: black; 
+  }
+
+  .color-primario{
+    color: #ff5722
+  }
+
+
+ /* Oculta los scrolles pero siguen funcionando */
+  ::-webkit-scrollbar {
+    display: none;
+}
+.spacer{
+  flex: 1 1 auto;
+}
+
+

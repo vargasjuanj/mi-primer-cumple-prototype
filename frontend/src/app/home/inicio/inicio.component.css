@@ -1,0 +1,9 @@
+#nombre {
+    font-family: Kurale;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 3.1em;
+    line-height: 3em;
+    text-align: center;
+    cursor: pointer;
+}

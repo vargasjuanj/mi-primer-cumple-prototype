@@ -1,0 +1,54 @@
+<div *ngIf="esAnfitrion" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="40px" class="separar colaborar">
+    <div id="titulo" [ngStyle.xs]="{'fontSize.em' : 1.7}">
+     Te has logueado como Host o Anfitrión
+    </div>
+    <div>
+  
+      <button [ngStyle]="{'fontSize.em' : 1.5}" class="complemento-elevacion colaborar4 "
+        [class.mat-elevation-z8]="elevarBoton" id="boton-colaborar" mat-raised-button color="primary"
+        (click)="aparecerFormulario()">
+        <mat-icon id="icono-colaborar" class="mr-1">{{icono}}</mat-icon>
+        <span #textoBotonColaborar>{{textoBoton}}</span>
+      </button>
+    </div>
+  
+    <div *ngIf="verFormulario" class="mt-5 select-categoria" fxLayout="column wrap" fxLayoutAlign="none center">
+  
+      <mat-form-field  [ngStyle]="{'fontSize.em' : 1.5}" class="select-categoria" appearance="fill">
+        <mat-label>
+  
+          <mat-icon>menu_book</mat-icon> Categoria
+        </mat-label>
+        <mat-select required [(ngModel)]="nombreDeCategoria"
+          (selectionChange)="guardarCategoriaYVaciarTiposGeneralesYVariables()">
+          <mat-option *ngFor="let nombreDeCategoria of servicioDeDatos.categorias" [value]="nombreDeCategoria">
+            {{nombreDeCategoria}}
+          </mat-option>
+          
+        </mat-select>
+      </mat-form-field>
+  
+      <app-formulario-bebida *ngIf="nombreDeCategoria === 'Bebida'" class="mb-4 select-categoria"
+        [ngStyle]="{'fontSize.em' : 1.5}" [categoria]="categoria" [nombreDeCategoria]="nombreDeCategoria"
+        [articulo]="articulo" [marcaAuxiliar]="marcaAuxiliar" [archivoAuxiliar]="archivoAuxiliar"
+        [tipoDeBebida]="tipoDeBebida" [tipoDeAlcoholica]="tipoDeAlcoholica" [marcaONombreAuxiliar]="marcaONombreAuxiliar"
+        (desaparecerFormularioDelPadre)="desaparecerFormulario()" (enviarArticuloAlPadre)="guardarArticulo($event)">
+      </app-formulario-bebida>
+  
+      <app-formulario-articulo *ngIf="noEsBebida()" class="mb-4 select-categoria" [ngStyle]="{'fontSize.em' : 1.5}"
+        [categoria]="categoria" [nombreDeCategoria]="nombreDeCategoria" [marcaAuxiliar]="marcaAuxiliar"
+        [articulo]="articulo" [nombreAuxiliar]="nombreAuxiliar" [archivoAuxiliar]="archivoAuxiliar"
+        (desaparecerFormularioDelPadre)="desaparecerFormulario()" (enviarArticuloAlPadre)="guardarArticulo($event)">
+      </app-formulario-articulo>
+  
+    </div>
+  
+  </div>
+  
+  <div [ngClass]="{'separar': this.esInvitado}">
+    <app-listado-articulos  *ngIf="articulos.length>0; else ningunArticulo" [esInvitado]="esInvitado" [nombreYApellido]="nombreYApellido" [articulos]="articulos"></app-listado-articulos>
+ 
+    <ng-template #ningunArticulo>
+      <h1 class="text-center"><b>El invitado {{this.nombreYApellido}} no tiene Artículos</b></h1>
+    </ng-template> 
+  </div>

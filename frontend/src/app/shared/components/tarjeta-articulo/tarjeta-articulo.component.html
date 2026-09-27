@@ -1,0 +1,33 @@
+<mat-card>
+    <mat-card-content>
+
+        <div fxLayout="column">
+            
+            <p *ngIf="esAlgunTipoDeBebida()" fxLayoutAlign="space-between">
+                <strong>Producto:</strong> <span >{{articulo.marca}}</span>
+            </p>
+            <p  *ngIf="noEsNingunTipoDeBebida()" fxLayoutAlign="space-between">
+                <strong>Producto:</strong> <span >{{articulo.nombre}}</span>
+            </p>
+            <p fxLayoutAlign="space-between">
+                <strong>Marca:</strong> <span>{{articulo.marca}}</span>
+            </p>
+            <p fxLayoutAlign="space-between">
+                <strong>Cantidad:</strong> {{articulo.cantidad}}
+            </p>
+            <p fxLayoutAlign="space-between">
+                <strong>Medida:</strong> {{articulo.medida}}
+            </p>
+            
+        </div>
+
+    </mat-card-content>
+
+    <mat-card-actions fxLayoutAlign="center">
+        <button [disabled]="esInvitado" mat-raised-button color="warn" (click)="eliminar(index)">
+            <mat-icon id="icono-eliminar" class="mr-1">delete</mat-icon>
+           Eliminar
+        </button>
+        
+    </mat-card-actions>
+</mat-card>

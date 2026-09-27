@@ -1,0 +1,7 @@
+<div class="fixed-top" >
+    <app-toolbar></app-toolbar>
+
+<app-secciones  [cerrarSesion]="cerrarSesion"  [secciones]="servicioDeDatos.seccionesDeAnfitrion"  [iconos]="servicioDeDatos.iconosDeAnfitrion" [rutas]="servicioDeDatos.rutasDeAnfitrion"></app-secciones>
+</div>
+
+<router-outlet></router-outlet>

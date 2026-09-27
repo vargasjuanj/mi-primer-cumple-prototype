@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-content>
+
+        <div fxLayout="column">
+            
+            <p fxLayoutAlign="space-between">
+                <strong>Nombre:</strong> <span >{{invitado.nombre}}</span>
+            </p>
+            <p fxLayoutAlign="space-between">
+                <strong>Apellido:</strong> <span >{{invitado.apellido}}</span>
+            </p>
+       
+        </div>
+
+    </mat-card-content>
+
+    <mat-card-actions fxLayoutAlign="center">
+        <button mat-raised-button color="warn"fxLayoutAlign="center" (click)="eliminar(invitado.id!)">
+            <mat-icon id="icono-eliminar" class="mr-1">delete</mat-icon>
+           Eliminar
+        </button>
+
+        <button mat-raised-button color="accent" fxLayoutAlign="center"  (click)="mostrarArticulos(invitado.articulos)">
+            Ver Articulos
+        </button>
+    </mat-card-actions>
+</mat-card>
